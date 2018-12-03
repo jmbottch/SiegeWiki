@@ -49,7 +49,7 @@ module.exports = {
     },
 
     getAllWorldsUnsorted(res){
-        worlds.find({}, (error, worlds) => {
+        World.find({}, (error, worlds) => {
             console.log(worlds);
             console.log(error);
             if (worlds === null) res.status(422).send({ Error :'No worlds exist.'});
