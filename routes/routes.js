@@ -1,7 +1,7 @@
 const WorldController = require('../src/controllers/world_controller');
 // const OperatorController = require('../src/controllers/operator_controller');
 // const SeasonController = require('../src/controllers/season_controller');
-
+const UserController = require('../src/controllers/user_controller');
 module.exports = (app) => {
 
     //create a new world
