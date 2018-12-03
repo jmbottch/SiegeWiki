@@ -21,7 +21,7 @@ module.exports = {
 
     edit(req, res) {
         const worldProps = req.body;
-        World.findOne({ worldProps: req.body })
+        World.findOne({ name: req.body.name })
         .then(world => {
             if (world === null) {
                 res.status(422).send({ Error :'World does not exist.'})
