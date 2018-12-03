@@ -6,6 +6,7 @@ const WorldSchema = new Schema({
 
     name: {
         type: String,
+        unique: true,
         required: [true, 'Name of World is required']
     },
     description: {
