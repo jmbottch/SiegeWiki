@@ -11,8 +11,14 @@ module.exports = (app) => {
     //delete a world
     app.delete('/api/world/', WorldController.delete);
     //show list of worlds
-    app.get('/api/worlds' , WorldController.getAllWorldsUnsorted);
+    app.get('/api/worlds/' , WorldController.getAllWorldsUnsorted);
     //show just one world
     app.get('/api/world/:id', WorldController.getWorldById);
 
+    //create a user
+    app.post('/api/user/', UserController.create);
+    //change user's password
+    app.put('/api/user/', UserController.edit);
+    //delete a user
+    app.delete('/api/user/', UserController.delete);
 }
