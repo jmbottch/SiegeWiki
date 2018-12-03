@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 // routes (app);
 
 app.listen(config.env.webPort, () => {
-    console.log('App is ready for requests on localhost:3000 or heroku')
+    console.log('App is ready for requests on ' + config.env.webPort)
   })
 
   app.get('*', function(req, res) {
