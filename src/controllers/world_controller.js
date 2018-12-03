@@ -54,7 +54,7 @@ module.exports = {
             console.log(error);
             if (worlds === null) res.status(422).send({ Error :'No worlds exist.'});
             else {
-                res.status(200).json({worlds});
+                res.status(200).send({worlds});
          }
         })
     },
