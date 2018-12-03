@@ -13,4 +13,10 @@ app.listen(config.env.webPort, () => {
     console.log('App is ready for requests on localhost:3000 or heroku')
   })
 
+  app.get('*', function(req, res) {
+    res.contentType('application/json');
+    res.status(200).send({ message: "Welcome to siegewiki." });
+});
+
+
 module.exports = app;
