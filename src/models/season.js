@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Map = require('./map');
+const World = require('./world');
 const Operator = require('./operator');
 
 const SeasonSchema = new Schema({
@@ -22,9 +22,9 @@ const SeasonSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'operator'
     }],
-    map: {
+    world: {
         type: Schema.Types.ObjectId,
-        ref: 'map'
+        ref: 'world'
     }
 });
 
