@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Season = require('./season');
 
-const MapSchema = new Schema({
+const WorldSchema = new Schema({
 
     name: {
         type: String,
-        required: [true, 'Name of Map is required']
+        required: [true, 'Name of World is required']
     },
     description: {
         type: String,
@@ -20,6 +20,6 @@ const MapSchema = new Schema({
 
 });
 
-const Map = mongoose.model('map', MapSchema);
+const World = mongoose.model('world', WorldSchema);
 
-module.exports = Map;
+module.exports = World;
