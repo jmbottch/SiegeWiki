@@ -3,7 +3,7 @@ const config = require('./mongodb_config');
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(config.dburl_env, { useNewUrlParser: true });
+mongoose.connect(config.dburl_env.toString(), { useNewUrlParser: true });
     var connection = mongoose.connection
     .once('open', () => console.log('Connected to Mongo on ' + config.dburl_env))
     .on('error', (error) => {
