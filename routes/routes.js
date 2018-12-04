@@ -1,5 +1,5 @@
 const WorldController = require('../src/controllers/world_controller');
-// const OperatorController = require('../src/controllers/operator_controller');
+const OperatorController = require('../src/controllers/operator_controller');
 const SeasonController = require('../src/controllers/season_controller');
 const UserController = require('../src/controllers/user_controller');
 module.exports = (app) => {
@@ -23,9 +23,16 @@ module.exports = (app) => {
     app.delete('/api/user/', UserController.delete);
 
     //create a new season
-    app.post('/api/season', SeasonController.create);
+    app.post('/api/season/', SeasonController.create);
     //edit an existing season
-    app.put('/api/season', SeasonController.edit);
+    app.put('/api/season/', SeasonController.edit);
     //delete a season
-    app.delete('/api/season', SeasonController.delete);
+    app.delete('/api/season/', SeasonController.delete);
+
+    //create a new operator
+    app.post('/api/operator/', OperatorController.create);
+    //edit an existing operator
+    app.put('/api/operator/', OperatorController.edit);
+    //delete an operator
+    app.delete('/api/operator/', OperatorController.delete);
 }
