@@ -11,9 +11,8 @@ module.exports = (app) => {
     //delete a world
     app.delete('/api/world/', WorldController.delete);
     //show list of worlds
-    app.get('/api/worlds/' , WorldController.getAllWorlds);
-    //show just one world
-    app.get('/api/world/:id', WorldController.getWorldById);
+    app.get('/api/worlds/' , WorldController.list);
+    
 
     //create a user
     app.post('/api/user/', UserController.create);
@@ -28,6 +27,8 @@ module.exports = (app) => {
     app.put('/api/season/', SeasonController.edit);
     //delete a season
     app.delete('/api/season/', SeasonController.delete);
+    //show list of Seasons
+    app.get('/api/seasons/' , SeasonController.list);
 
     //create a new operator
     app.post('/api/operator/', OperatorController.create);
@@ -35,4 +36,6 @@ module.exports = (app) => {
     app.put('/api/operator/', OperatorController.edit);
     //delete an operator
     app.delete('/api/operator/', OperatorController.delete);
+    //show list of operators
+    app.get('/api/operators/' , OperatorController.list);
 }

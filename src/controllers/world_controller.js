@@ -2,6 +2,13 @@ const World = require('../models/world');
 
 module.exports = {
 
+    list(req, res) {
+        World.find({})
+            .then(worlds => {
+                res.status(200).send(worlds);
+            });
+    },
+
     create(req, res) {
 
         World.create({
@@ -46,29 +53,6 @@ module.exports = {
                 .then(() => res.status(200).send({ Message :'World succesfully removed.'}));
             }
         })
-    },
-
-    getAllWorlds(res){
-        World.find({}, (error, worlds) => {
-            console.log(worlds);
-            console.log(error);
-            if (worlds === null) res.status(422).send({ Error :'No worlds exist.'});
-            else {
-                res.status(200).send({worlds});  //FIX THIS LINE
-         }
-        })
-    },
-
-    getWorldById(req, res){
-        World.findById(req.params.id)
-
-        .then(world => {
-            if(world === null){
-                res.status(422).send({ Error :'World does not exist.'})
-            } else {
-                res.status(422).send({world});
-            }
-        });
-    }
+    }    
 
 };

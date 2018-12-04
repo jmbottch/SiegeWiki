@@ -4,6 +4,13 @@ const World = require('../models/world');
 
 module.exports = {
 
+    list(req, res) {
+        Operator.find({})
+            .then(operators => {
+                res.status(200).send(operators);
+            });
+    },
+
     create(req,res) {
         Operator.create({
             name: req.body.name,

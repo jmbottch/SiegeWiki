@@ -2,6 +2,13 @@ const Season = require('../models/season');
 
 module.exports = {
 
+    list(req, res) {
+        Season.find({})
+            .then(seasons => {
+                res.status(200).send(seasons);
+            });
+    },
+
     create(req, res) {
         Season.create({
             name: req.body.name,
