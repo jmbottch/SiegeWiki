@@ -2,6 +2,8 @@ const WorldController = require('../src/controllers/world_controller');
 const OperatorController = require('../src/controllers/operator_controller');
 const SeasonController = require('../src/controllers/season_controller');
 const UserController = require('../src/controllers/user_controller');
+const AuthController = require('../src/controllers/auth_controller');
+
 module.exports = (app) => {
 
     //create a new world
@@ -38,4 +40,10 @@ module.exports = (app) => {
     app.delete('/api/operator/', OperatorController.delete);
     //show list of operators
     app.get('/api/operators/' , OperatorController.list);
+
+    //login to account
+    app.post('/api/login', AuthController.login);
+    //lougout to account
+    //LOGOUT ROUTE
+
 }
