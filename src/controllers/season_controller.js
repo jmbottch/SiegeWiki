@@ -31,9 +31,10 @@ module.exports = {
             } else 
             {
                 season.set({
-                     'name': req.body.name,
+                     'name': req.body.newName,
                      'description': req.body.description,
                      'year': req.body.year
+                     
                 })    
                 season.save()
                 .then(() => res.status(200).send({Message: "Season has been edited."}))
