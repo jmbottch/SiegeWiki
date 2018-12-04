@@ -1,6 +1,6 @@
 const WorldController = require('../src/controllers/world_controller');
 // const OperatorController = require('../src/controllers/operator_controller');
-// const SeasonController = require('../src/controllers/season_controller');
+const SeasonController = require('../src/controllers/season_controller');
 const UserController = require('../src/controllers/user_controller');
 module.exports = (app) => {
 
@@ -21,4 +21,11 @@ module.exports = (app) => {
     app.put('/api/user/', UserController.edit);
     //delete a user
     app.delete('/api/user/', UserController.delete);
+
+    //create a new season
+    app.post('/api/season', SeasonController.create);
+    //edit an existing season
+    app.put('/api/season', SeasonController.edit);
+    //delete a season
+    app.delete('/api/season', SeasonController.delete);
 }
