@@ -9,9 +9,8 @@ module.exports = {
         if(!res) {
             res.json({
                 succes: false,
-                message: "Incorrect details"
-
-            })
+                })
+                res.status(401).send({Error: 'Invalid Details.'})
         }else {
             console.log("Logging you in")
         }
