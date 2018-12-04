@@ -11,7 +11,7 @@ module.exports = (app) => {
     //delete a world
     app.delete('/api/world/', WorldController.delete);
     //show list of worlds
-    app.get('/api/worlds/' , WorldController.getAllWorldsUnsorted);
+    app.get('/api/worlds/' , WorldController.getAllWorlds);
     //show just one world
     app.get('/api/world/:id', WorldController.getWorldById);
 

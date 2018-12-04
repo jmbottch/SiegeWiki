@@ -3,8 +3,6 @@ const User = require('../models/user');
 module.exports = {
 
     create(req, res) {
-        const userProps = req.body;
-
         User.create(userProps)
             .then(() => res.status(201).send({ Message: 'User has been created'}))
             .catch(err => res.status(401).send({err}))

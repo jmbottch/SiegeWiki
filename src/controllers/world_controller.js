@@ -48,7 +48,7 @@ module.exports = {
         })
     },
 
-    getAllWorldsUnsorted(res){
+    getAllWorlds(res){
         World.find({}, (error, worlds) => {
             console.log(worlds);
             console.log(error);
