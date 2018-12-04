@@ -6,7 +6,7 @@ module.exports = {
 
         const {name, password} = req.body
         User.findOne({name, password})
-        if(!resp) {
+        if(!res) {
             res.json({
                 succes: false,
                 message: "Incorrect details"
