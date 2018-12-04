@@ -11,7 +11,7 @@ var dburl = process.env.NODE_ENV === 'production' ?
     'mongodb://' + env.dbUser + ':' + env.dbPassword + '@' + env.dbHost + ':' + env.dbPort + '/' + env.dbDatabase :
     'mongodb://localhost/' + env.dbDatabase
 
-var dburl_env = "mongodb://app:Password123@ds061938.mlab.com:61938/siegewiki";
+var dburl_env = "mongodb://app:Password1@ds061938.mlab.com:61938/siegewiki";
 
 module.exports = {
      env,
