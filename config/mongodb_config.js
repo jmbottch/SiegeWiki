@@ -16,6 +16,7 @@ var dburl_env = "mongodb://app:Password1@ds061938.mlab.com:61938/siegewiki";
 module.exports = {
      env,
      dburl,
-     dburl_env
+     dburl_env,
+     'secret' : 'supersecret'
 };
 

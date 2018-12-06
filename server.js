@@ -5,6 +5,7 @@ const bodyParser= require('body-parser')
 var mongodb = require('./config/mongodb_connector');
 const config = require('./config/mongodb_config');
 const routes = require('./routes/routes');
+const jwt = require('jsonwebtoken');
 
 app.use(bodyParser.json());
 routes (app);

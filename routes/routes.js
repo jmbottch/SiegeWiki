@@ -42,7 +42,7 @@ module.exports = (app) => {
     app.get('/api/operators/' , OperatorController.list);
 
     //login to account
-    app.post('/api/login', AuthController.login);
+    app.post('/api/auth/register', AuthController, register);
     //lougout to account
     //LOGOUT ROUTE
 
