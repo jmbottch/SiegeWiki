@@ -10,48 +10,34 @@ const config = require('../../config/mongodb_config');
 
 module.exports = {
 
-    // login(req, res) {
-
-    //     const {name, password} = req.body
-    //     User.findOne({name, password})
-    //     if(!res) {
-    //         res.json({
-    //             succes: false,
-    //             })
-    //             res.status(401).send({Error: 'Invalid Details.'})
-    //     }else {
-    //         console.log("Logging you in")
-    //     }
-
-    // },
-
-    register(req, res) {
-        var hashedPassword = bcrypt.hashSync(req.body.password, 8);
-
-        User.create({
-            name: req.body.name,
-            password: hashedPassword
-        },
-            function (err, user) {
-                if (err) return res.status(500).send("There was a problem registering the user.")
-                // create a token
-                var token = jwt.sign({ id: user._id }, config.secret, {
-                    expiresIn: 86400 // expires in 24 hours
+    login(req, res) {
+        User.findOne({name: req.body.name})
+        .then(user => {
+            var validPassword = bcrypt.compareSync(req.body.password, user.password);
+            if(!validPassword) {
+                res.status(401).send({Error: 'Invalid Password'})
+            }
+            else {
+                var token = jwt.sign({id: user._id}, config.secret, {
+                    expiresIn: 86400 //expires in 24 hours
                 });
-                res.status(200).send({ auth: true, token: token });
-            });
-
+                res.status(200).send({auth: true, token: token})
+            }
+        })
+        .catch(error => {
+            res.status(401).send({Error: error});
+        });
     },
-
-    getUser(req, res) {
+        
+    validateToken(req, res, next) {
         var token = req.headers['x-access-token'];
-        if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
+        console.log(token)
+        if(!token) return res.status(401).send({Error : 'Token is missing'})
 
-        jwt.verify(token, config.secret, function (err, decoded) {
-            if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
-
-            res.status(200).send(decoded);
+        jwt.verify(token, config.secret, function(err, decoded) {
+            console.log(decoded)
+            if (err) return res.status(401).send({Error: 'Invalid Token'})
+            if (decoded) next();
         });
     }
-
 }

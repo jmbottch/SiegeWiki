@@ -6,8 +6,12 @@ const AuthController = require('../src/controllers/auth_controller');
 
 module.exports = (app) => {
 
-    //create a new world
-    app.post('/api/world/', WorldController.create);
+     //register a new user with 'name, password'
+     app.post('/api/user/register', UserController.create);
+     //login using a token and 'name, password'
+     app.post('/api/user/login', AuthController.login);
+
+
     //edit an existing world
     app.put('/api/world/', WorldController.edit);
     //delete a world
@@ -41,9 +45,6 @@ module.exports = (app) => {
     //show list of operators
     app.get('/api/operators/' , OperatorController.list);
 
-    //login to account
-    app.post('/api/register', AuthController, register);
-    //lougout to account
-    //LOGOUT ROUTE
+   
 
 }
