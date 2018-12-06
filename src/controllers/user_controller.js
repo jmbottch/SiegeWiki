@@ -3,10 +3,21 @@ const User = require('../models/user');
 module.exports = {
 
     create(req, res) {
-        const userProps = req.body;
-        User.create(userProps)
-            .then(() => res.status(201).send({ Message: 'User has been created.'}))
-            .catch(err => res.status(401).send({err}))
+        var hashedPassword = bcrypt.hashSync(req.body.password, 8);
+        User.create({
+            name: req.body.name,
+            password: hashedPassword
+        })  
+        .then(() =>
+            res.status(200).send({Message: "User has been created."}),
+            console.log('user has been saved'))
+        .catch((err) => {
+                if (err.name == 'MongoError' && err.code == 11000) {
+                    res.status(401).send({ Error: 'Username is already taken.'});
+                } else {
+                    res.status(401).send({err});
+                }
+        });
     },
 
     edit(req, res) {
