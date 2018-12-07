@@ -15,7 +15,8 @@ const WorldSchema = new Schema({
     },
     season: {
         type: Schema.Types.ObjectId,
-        ref: 'season'
+        ref: 'season',
+        required: [true, 'Season is required']
     },
     availableInRanked: Boolean
 
