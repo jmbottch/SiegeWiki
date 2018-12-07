@@ -18,6 +18,10 @@ const SeasonSchema = new Schema({
         type: Number,
         required: [true, 'Year is required']
     },            // example: Year 1, Year 2
+    season: {
+        type: Number,
+        required: [true, 'Season is required']
+    },
     operators: [{
         type: Schema.Types.ObjectId,
         ref: 'operator'
