@@ -2,6 +2,13 @@ const World = require('../models/world');
 
 module.exports = {
 
+    list(req, res) {
+        World.find({})
+            .then(worlds => {
+                res.status(200).send(worlds);
+            });
+    },
+
     create(req, res) {
 
         World.create({
@@ -14,14 +21,14 @@ module.exports = {
             res.status(200).send({Message: "World created succesfully."}))
             .catch((err) => {
                 if (err.name == 'MongoError' && err.code == 11000) {
-                    res.status(401).send({Error:'Worldname already exists'})
+                    res.status(401).send({Error:'This name already exists.'})
                 }
             })
     },
 
     edit(req, res) {
         const worldProps = req.body;
-        World.findOne({ worldProps: req.body })
+        World.findOne({ name: req.body.name })
         .then(world => {
             if (world === null) {
                 res.status(422).send({ Error :'World does not exist.'})
@@ -30,7 +37,7 @@ module.exports = {
             else{
                 world.set('password', newPassword)
                 world.save()
-                .then(() => res.status(200).send({Message: "World changed succesfully"}))
+                .then(() => res.status(200).send({Message: "World has been changed."}))
             }
         })
     },
@@ -46,29 +53,6 @@ module.exports = {
                 .then(() => res.status(200).send({ Message :'World succesfully removed.'}));
             }
         })
-    },
-
-    getAllWorldsUnsorted(res){
-        worlds.find({}, (error, worlds) => {
-            console.log(worlds);
-            console.log(error);
-            if (worlds === null) res.status(422).send({ Error :'No worlds exist.'});
-            else {
-                res.status(200).json({worlds});
-         }
-        })
-    },
-
-    getWorldById(req, res){
-        World.findById(req.params.id)
-
-        .then(world => {
-            if(world === null){
-                res.status(422).send({ Error :'World does not exist.'})
-            } else {
-                res.status(422).send({world});
-            }
-        });
-    }
+    }    
 
 };

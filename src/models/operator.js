@@ -6,6 +6,7 @@ const OperatorSchema = new Schema({
 
     name: {
         type: String,
+        unique: true,
         required: [true, 'Name of operator is required.']        
     },
     description: {

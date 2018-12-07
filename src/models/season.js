@@ -26,6 +26,7 @@ const SeasonSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'world'
     }
+    
 });
 
 const Season = mongoose.model('season', SeasonSchema);
