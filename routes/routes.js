@@ -7,7 +7,7 @@ const AuthController = require('../src/controllers/auth_controller');
 module.exports = (app) => {
 
      //register a new user with 'name, password'
-     app.post('/api/user/register', UserController.create);
+     app.post('/api/user/register', AuthController.validateToken, UserController.create);
      //login using a token and 'name, password'
      app.post('/api/user/login', AuthController.login);
 
@@ -43,7 +43,7 @@ module.exports = (app) => {
     //delete an operator
     app.delete('/api/operator/', OperatorController.delete);
     //show list of operators
-    app.get('/api/operators/', AuthController.validateToken, OperatorController.list);
+    app.get('/api/operators/', OperatorController.list);
 
    
 
