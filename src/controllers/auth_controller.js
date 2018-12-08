@@ -30,7 +30,7 @@ module.exports = {
     },
     
      validateToken(req, res, next) {
-        var token = req.headers['x-access-token'];
+        var token = req.headers.authorization;
         console.log(token)
         if (!token) return res.status(401).send({ Error :'No token provided.'})
         
