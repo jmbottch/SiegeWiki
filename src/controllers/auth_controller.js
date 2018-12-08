@@ -30,33 +30,36 @@ module.exports = {
     },
     
      validateToken(req, res, next) {
-         if(!req.headres.authorization) {
-             return res.status(401).send('req.headers.authorization === null')
-         }
-         let token = req.headers.authorization.split(' ')[1]
-         if(token === 'null') {
-            return res.status(401).send('token === null')
-         }
-         let payload = jwt.verify(token, config.secret, function(err, decoded) {
-             console.log(decoded)
-             if(err) return res.status(401).send({Error:'Token is invalid'})
-             })
-             next();
-         if(!payload) {
-             return res.status(401).send('payload === null')
-         }
+        //  if(!req.headres.authorization) {
+        //      return res.status(401).send('req.headers.authorization === null')
+        //  }
+        //  let token = req.headers.authorization.split(' ')[1]
+        //  if(token === 'null') {
+        //     return res.status(401).send('token === null')
+        //  }
+        //  let payload = jwt.verify(token, config.secret, function(err, decoded) {
+        //      console.log(decoded)
+        //      if(err) return res.status(401).send({Error:'Token is invalid'})
+        //      })
+        //      next();
+        //  if(!payload) {
+        //      return res.status(401).send('payload === null')
+        //  }
         //  req.userId = payload.subject
         //  next();
 
-        // var token = req.headers.authorization;
-        // console.log(token)
-        // if (!token) return res.status(401).send({ Error :'No token provided.'})
         
-        // jwt.verify(token, config.secret, function(err, decoded) {
-        //     console.log(decoded)
-        //   if (err) return res.status(401).send({ Error :'Token is invalid.'})
-        //   if (decoded) next();
-        // });
+        let token = req.headers.authorization.split(' ')[1]
+        console.log(token)
+        if (!token) return res.status(401).send({ Error :'No token provided.'})
+        
+        let payload = jwt.verify(token, config.secret, function(err, decoded) {
+              console.log(decoded)
+              if(err) return res.status(401).send({Error:'Token is invalid'})
+              if(!payload) {
+                  return res.status(401).send({Error: 'no payload'})
+              }
+              })
     }
     
 }
