@@ -40,8 +40,9 @@ module.exports = {
          let payload = jwt.verify(token, config.secret, function(err, decoded) {
              console.log(decoded)
              if(err) return res.status(401).send({Error:'Token is invalid'})
-             if(decoded) next();
-         })
+             })
+             req.userId = payload.subject
+             next();
          if(!payload) {
              return res.status(401).send('payload === null')
          }
