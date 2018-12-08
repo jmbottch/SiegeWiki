@@ -41,7 +41,6 @@ module.exports = {
              console.log(decoded)
              if(err) return res.status(401).send({Error:'Token is invalid'})
              })
-             req.userId = payload.subject
              next();
          if(!payload) {
              return res.status(401).send('payload === null')
