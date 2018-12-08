@@ -30,26 +30,14 @@ module.exports = {
     },
     
      validateToken(req, res, next) {
-        //  if(!req.headres.authorization) {
-        //      return res.status(401).send('req.headers.authorization === null')
-        //  }
-        //  let token = req.headers.authorization.split(' ')[1]
-        //  if(token === 'null') {
-        //     return res.status(401).send('token === null')
-        //  }
-        //  let payload = jwt.verify(token, config.secret, function(err, decoded) {
-        //      console.log(decoded)
-        //      if(err) return res.status(401).send({Error:'Token is invalid'})
-        //      })
-        //      next();
-        //  if(!payload) {
-        //      return res.status(401).send('payload === null')
-        //  }
-        //  req.userId = payload.subject
-        //  next();
-
+          if(!req.headres.authorization) {
+             return res.status(401).send('req.headers.authorization === null')
+          }
         
         let token = req.headers.authorization.split(' ')[1]
+        if(token === 'null') {
+            return res.status(401).send('token === null')
+         }
         console.log(token)
         if (!token) return res.status(401).send({ Error :'No token provided.'})
         
@@ -59,6 +47,7 @@ module.exports = {
               if(!payload) {
                   return res.status(401).send({Error: 'no payload'})
               }
+              next();
               })
     }
     
