@@ -29,26 +29,22 @@ module.exports = {
         });
     },
     
-     validateToken(req, res, next) {
-          if(!req.headres.authorization) {
-             return res.status(401).send('req.headers.authorization === null')
-          }
-        
+     verifyToken(req,res,next) {
+        if(!req.headers.authorization) {
+            return res.status(401).send('No authorization Provided')
+        }
         let token = req.headers.authorization.split(' ')[1]
+
         if(token === 'null') {
-            return res.status(401).send('token === null')
-         }
-        console.log(token)
-        if (!token) return res.status(401).send({ Error :'No token provided.'})
-        
-        let payload = jwt.verify(token, config.secret, function(err, decoded) {
-              console.log(decoded)
-              if(err) return res.status(401).send({Error:'Token is invalid'})
-              if(!payload) {
-                  return res.status(401).send({Error: 'no payload'})
-              }
-              next();
-              })
-    }
+            return res.status(401).send('token = null')
+        }
+
+        let payload = jwt.verify(token, 'secretKey')
+        if(!payload) {
+            return res.status(401).send('no payload')
+        }
+        res._id = payload.subject
+        next();
+     }  
     
 }
