@@ -12,38 +12,40 @@ module.exports = (app) => {
      app.post('/api/user/login', AuthController.login);
 
 
+     //create new world
+    app.post('/api/worlds/', AuthController.verifyToken, WorldController.create)
     //edit an existing world
-    app.put('/api/worlds/', WorldController.edit);
+    app.put('/api/worlds/', AuthController.verifyToken, WorldController.edit);
     //delete a world
-    app.delete('/api/worlds/', WorldController.delete);
+    app.delete('/api/worlds/', AuthController.verifyToken, WorldController.delete);
     //show list of worlds
     app.get('/api/worlds/' , WorldController.list);
     
 
     //create a user
-    app.post('/api/users/', UserController.create);
+    app.post('/api/users/', AuthController.verifyToken, UserController.create);
     //change user's password
-    app.put('/api/users/', UserController.edit);
+    app.put('/api/users/', AuthController.verifyToken, UserController.edit);
     //delete a user
-    app.delete('/api/user/', UserController.delete);
+    app.delete('/api/user/', AuthController.verifyToken, UserController.delete);
 
     //create a new season
-    app.post('/api/seasons/', SeasonController.create);
+    app.post('/api/seasons/', AuthController.verifyToken, SeasonController.create);
     //edit an existing season
-    app.put('/api/seasons/', SeasonController.edit);
+    app.put('/api/seasons/', AuthController.verifyToken, SeasonController.edit);
     //delete a season
-    app.delete('/api/seasons/', SeasonController.delete);
+    app.delete('/api/seasons/', AuthController.verifyToken, SeasonController.delete);
     //show list of Seasons
     app.get('/api/seasons/' , SeasonController.list);
 
     //create a new operator
-    app.post('/api/operators/', OperatorController.create);
+    app.post('/api/operators/', AuthController.verifyToken, OperatorController.create);
     //edit an existing operator
-    app.put('/api/operators/', OperatorController.edit);
+    app.put('/api/operators/', AuthController.verifyToken, OperatorController.edit);
     //delete an operator
-    app.delete('/api/operator/', OperatorController.delete);
+    app.delete('/api/operator/', AuthController.verifyToken, OperatorController.delete);
     //show list of operators
-    app.get('/api/operators/', AuthController.verifyToken ,OperatorController.list);
+    app.get('/api/operators/' ,OperatorController.list);
 
    
 
