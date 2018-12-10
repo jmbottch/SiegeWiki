@@ -13,33 +13,33 @@ module.exports = (app) => {
 
 
     //edit an existing world
-    app.put('/api/world/', WorldController.edit);
+    app.put('/api/worlds/', WorldController.edit);
     //delete a world
-    app.delete('/api/world/', WorldController.delete);
+    app.delete('/api/worlds/', WorldController.delete);
     //show list of worlds
     app.get('/api/worlds/' , WorldController.list);
     
 
     //create a user
-    app.post('/api/user/', UserController.create);
+    app.post('/api/users/', UserController.create);
     //change user's password
-    app.put('/api/user/', UserController.edit);
+    app.put('/api/users/', UserController.edit);
     //delete a user
     app.delete('/api/user/', UserController.delete);
 
     //create a new season
-    app.post('/api/season/', SeasonController.create);
+    app.post('/api/seasons/', SeasonController.create);
     //edit an existing season
-    app.put('/api/season/', SeasonController.edit);
+    app.put('/api/seasons/', SeasonController.edit);
     //delete a season
-    app.delete('/api/season/', SeasonController.delete);
+    app.delete('/api/seasons/', SeasonController.delete);
     //show list of Seasons
     app.get('/api/seasons/' , SeasonController.list);
 
     //create a new operator
-    app.post('/api/operator/', OperatorController.create);
+    app.post('/api/operators/', OperatorController.create);
     //edit an existing operator
-    app.put('/api/operator/', OperatorController.edit);
+    app.put('/api/operators/', OperatorController.edit);
     //delete an operator
     app.delete('/api/operator/', OperatorController.delete);
     //show list of operators
