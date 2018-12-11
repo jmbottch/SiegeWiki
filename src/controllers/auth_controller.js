@@ -39,12 +39,11 @@ module.exports = {
             return res.status(401).send('token = null')
         }
 
-        let payload = jwt.verify(token, config.secret)
-        if(!payload) {
-            return res.status(401).send('no payload')
-        }
-        res._id = payload.subject
-        next();
+        jwt.verify(token, config.secret, function(err, decoded) {
+            console.log(decoded)
+          if (err) return res.status(401).send({ Error :'Token is invalid.'})
+          if (decoded) next();
+        });
      }  
     
 }
