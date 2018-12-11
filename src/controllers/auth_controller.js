@@ -39,7 +39,7 @@ module.exports = {
             return res.status(401).send('token = null')
         }
 
-        let payload = jwt.verify(token, 'secretKey')
+        let payload = jwt.verify(token, config.secret)
         if(!payload) {
             return res.status(401).send('no payload')
         }
