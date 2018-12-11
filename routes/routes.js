@@ -27,7 +27,7 @@ module.exports = (app) => {
     //change user's password
     app.put('/api/users/', AuthController.verifyToken, UserController.edit);
     //delete a user
-    app.delete('/api/user/', AuthController.verifyToken, UserController.delete);
+    app.delete('/api/users/', AuthController.verifyToken, UserController.delete);
 
     //create a new season
     app.post('/api/seasons/', AuthController.verifyToken, SeasonController.create);
