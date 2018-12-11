@@ -58,7 +58,7 @@ module.exports = {
     },
 
     delete(req, res) {
-        Operator.findById(req.body._id)
+        Operator.findOne({name: req.headers.name})
         .then(operator =>{
             if(operator === null){
                 res.status(422).send({ Error :'Operator does not exist.'})

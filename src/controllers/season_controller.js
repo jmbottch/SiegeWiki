@@ -61,7 +61,7 @@ module.exports = {
     },
 
     delete(req, res) {
-        Season.findOne({name: req.body.name})
+        Season.findOne({name: req.headers.name})
         .then(season => {
             if(season === null) {
                 res.status(401).send({Error: 'Season does not exist.'})
