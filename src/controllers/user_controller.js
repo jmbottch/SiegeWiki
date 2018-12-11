@@ -40,12 +40,12 @@ module.exports = {
     },
 
     delete(req, res) {
-        User.findOne({name: req.body.name })
+        User.findOne({name: req.headers.name })
         .then(user => {
             if(user === null){
                 res.status(401).send({Error: 'User does not exist.'})
             }
-            if(user.password !== req.body.password) {
+            if(user.password !== req.headers.password) {
                 res.status(401).send({Error: 'Password does not match.'})
             }
             else {
