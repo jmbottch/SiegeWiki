@@ -13,10 +13,12 @@ var dburl = process.env.NODE_ENV === 'production' ?
 
 var dburl_env = "mongodb://app:Password1@ds061938.mlab.com:61938/siegewiki";
 
+var secret = new Buffer('supersecret', 'base64');
+
 module.exports = {
      env,
      dburl,
      dburl_env,
-     'secret' : 'supersecret'
+     secret
 };
 
