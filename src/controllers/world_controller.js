@@ -27,7 +27,6 @@ module.exports = {
     },
 
     edit(req, res) {
-        const worldProps = req.body;
         World.findOne({ name: req.body.name })
         .then(world => {
             if (world === null) {
@@ -36,10 +35,10 @@ module.exports = {
 
             else{
                world.set({
-                   name: req.body.name,
-                   description: req.body.description,
-                   season: req.body.season,
-                   availableInRanked: req.body.availableInRanked
+                   'name': req.body.newName,
+                   'description': req.body.description,
+                   'season': req.body.season,
+                   'availableInRanked': req.body.availableInRanked
                })
             }
         })
