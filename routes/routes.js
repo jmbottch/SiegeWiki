@@ -43,7 +43,7 @@ module.exports = (app) => {
     //edit an existing operator
     app.put('/api/operators/', AuthController.verifyToken, OperatorController.edit);
     //delete an operator
-    app.delete('/api/operator/', AuthController.verifyToken, OperatorController.delete);
+    app.delete('/api/operators/', AuthController.verifyToken, OperatorController.delete);
     //show list of operators
     app.get('/api/operators/' ,OperatorController.list);
 
