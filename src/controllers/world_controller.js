@@ -35,9 +35,12 @@ module.exports = {
             } 
 
             else{
-                world.set('password', newPassword)
-                world.save()
-                .then(() => res.status(200).send({Message: "World has been changed."}))
+               world.set({
+                   name: req.body.name,
+                   description: req.body.description,
+                   season: req.body.season,
+                   availableInRanked: req.body.availableInRanked
+               })
             }
         })
     },
