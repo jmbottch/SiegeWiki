@@ -37,9 +37,8 @@ module.exports = {
                 res.status(401).send({Error: 'Season does not exist.'})
             } else 
             {
-                const operator1 = Operator.findOne(req.body.name)
-                const operator2 = Operator.findOne(req.body.name)
-
+                
+                const operator = Operator.findOne(req.body.name)
                 const world = World.findOne(req.body.name)
 
                 season.set({
@@ -47,11 +46,11 @@ module.exports = {
                      'description': req.body.description,
                      'year': req.body.year,
                      'season' : req.body.season,
-                     'operators' : [operator1, operator2],
+                     'operators' : operator,
                      'world': world
                 })    
 
-                season.operators.push(operator1, operator2);
+                season.operators.push(operator);
                 season.world.push(world);
                 season.save()
                 .then(() => res.status(200).send({Message: "Season has been edited."}))
