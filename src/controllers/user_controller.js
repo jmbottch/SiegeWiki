@@ -40,7 +40,7 @@ module.exports = {
     },
 
     delete(req, res) {
-        User.findOne( { name: req.body.name } )
+        User.findOne( { name: req.headers.name } )
         .then(user => {
             if(user === null){
                 res.status(401).send({ Error :'User does not exist.'})
