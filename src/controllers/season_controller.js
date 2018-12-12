@@ -12,6 +12,7 @@ function recreate(res, season, operatorAdd, mapAdd) {
                 _id: season._id,
                 __v: season.__v,
                 name: season.name,
+                season: season.season,
                 description: season.description,
                 year: season.year,
                 operator: operatorAdd,
