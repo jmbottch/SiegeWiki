@@ -82,7 +82,7 @@ module.exports = {
             }
             else { 
                 let operatorName = req.body.name;
-                let siegeMapName = req.body.name;
+                let worldName = req.body.name;
                 let foundOperator = new Operator();
                 let foundMap = new World();
     
@@ -92,7 +92,7 @@ module.exports = {
                     })
                     .catch((err) => res.status(401).send({err}));
     
-                    SiegeMap.findOne({ name: siegeMapName })
+                    World.findOne({ name: worldName })
                     .then(resultMap => {
                         foundMap = resultMap;
                     })
