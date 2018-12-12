@@ -34,7 +34,7 @@ module.exports = {
                 res.status(401).send({ Error :'World does not exist.'})
             }
             else {
-                let newName = req.body.name;
+                let newName = req.body.newName;
                 let newDesc = req.body.description;
                 let newRanked = req.body.availableInRanked;
                 if (req.body.name === '' || req.body.name === null) newName = operator.name
