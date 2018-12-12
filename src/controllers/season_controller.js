@@ -52,6 +52,55 @@ module.exports = {
 
     },
 
+     recreate(res, season, operatorAdd, mapAdd) {
+        console.log(season._id + season)
+        Season.findOne({ name: season.name })
+        .then((foundSeason) => {
+            foundSeason.delete()
+            .then(() => {
+                Season.create({
+                    _id: season._id,
+                    _v: season._v,
+                    name: season.name,
+                    description: season.description,
+                    year: season.year,
+                    season: season.sesaon,
+                    operator: operatorAdd,
+                    map: mapAdd
+                }).then(() => { res.status(200).send({Message: "Populated season succesfully"}) })
+            })
+        })
+    },
+    
+     populate(req, res) {
+        Season.findOne( { name: req.body.name } )
+        .then(season => {
+            if(season === null){
+                res.status(401).send({ Error :'Season does not exist.'})
+            }
+            else { 
+                let operatorName = req.body.operatorName;
+                let worldName = req.body.worldName;
+                let foundOperator = new Operator();
+                let foundMap = new Map();
+                
+    
+                Operator.findOne({ name: operatorName })
+                    .then(opResult => {
+                        foundOperator = opResult;
+                    })
+                    .catch((err) => res.status(401).send({err}));
+    
+                    World.findOne({ name: worldName })
+                    .then(mapResult => {
+                        foundMap = mapResult;
+                    })
+                    .catch((err) => res.status(401).send({err}));
+                    recreate(res, season, foundOperator, foundMap)
+            }
+        });
+    },
+
     delete(req, res) {
         Season.findOne({name: req.headers.name})
         .then(season => {

@@ -33,6 +33,8 @@ module.exports = (app) => {
     app.post('/api/seasons/', AuthController.verifyToken, SeasonController.create);
     //edit an existing season
     app.put('/api/seasons/', AuthController.verifyToken, SeasonController.edit);
+    //edit an existing season with 'id, name, description, imageLink, year'
+    app.put('/api/seasons/populate', AuthController.verifyToken, SeasonController.populate);
     //delete a season
     app.delete('/api/seasons/', AuthController.verifyToken, SeasonController.delete);
     //show list of Seasons
