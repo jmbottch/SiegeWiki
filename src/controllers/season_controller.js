@@ -51,37 +51,53 @@ module.exports = {
 
 
 
-    populate(req, res, mapAdd, operatorAdd) {
-        let operatorName = req.body.name;
-        let worldName = req.body.name;
-        let foundOperator = new Operator();
-        let foundMap = new Map();
-
-
-        Operator.findOne({ name: operatorName })
-            .then(opResult => {
-                foundOperator = opResult;
-            })
-            .catch((err) => res.status(401).send({ err }));
-
-        World.findOne({ name: worldName })
-            .then(mapResult => {
-                foundMap = mapResult;
-            })
+    recreate(res, season, operatorAdd, mapAdd) {
+        console.log(season._id + season)
+        Season.findOne({ _id: season._id })
+        .then((foundSeason) => {
+            foundSeason.delete()
             .then(() => {
                 Season.create({
-                    name: req.body.name,
-                    description: req.body.description,
-                    year: req.body.year,
-                    season: req.body.season,
+                    _id: season._id,
+                    __v: season.__v,
+                    name: season.name,
+                    description: season.description,
+                    year: season.year,
                     operator: operatorAdd,
-                    world: mapAdd
-                }).then(() => { res.status(200).send({ Message: "Populated season succesfully" }) })
+                    map: mapAdd
+                }).then(() => { res.status(200).send({Message: "Populated season succesfully"}) })
+                .catch((err) => res.status(401).send({err}));
             })
-
-
-            .catch((err) => res.status(401).send({ err }));
-        },
+        })
+    },
+    
+     populate(req, res) {
+        Season.findOne( { name: req.body.name } )
+        .then(season => {
+            if(season === null){
+                res.status(401).send({ Error :'Season does not exist.'})
+            }
+            else { 
+                let operatorName = req.body.name;
+                let siegeMapName = req.body.name;
+                let foundOperator = new Operator();
+                let foundMap = new Map();
+    
+                Operator.findOne({ name: operatorName })
+                    .then(resultOp => {
+                        foundOperator = resultOp;
+                    })
+                    .catch((err) => res.status(401).send({err}));
+    
+                    SiegeMap.findOne({ name: siegeMapName })
+                    .then(resultMap => {
+                        foundMap = resultMap;
+                    })
+                    .catch((err) => res.status(401).send({err}));
+                    recreate(res, season, foundOperator, foundMap)
+            }
+        });
+    },
 
         delete (req, res) {
             Season.findOne({ name: req.headers.name })
