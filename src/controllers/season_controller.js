@@ -15,7 +15,7 @@ function recreate(res, season, operatorAdd, mapAdd) {
                 description: season.description,
                 year: season.year,
                 operator: operatorAdd,
-                map: mapAdd
+                world: mapAdd
             }).then(() => { res.status(200).send({Message: "Populated season succesfully"}) })
             .catch((err) => res.status(401).send({err}));
         })
