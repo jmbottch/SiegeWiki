@@ -65,6 +65,17 @@ module.exports = {
         .catch((err) => res.status(401).send({err}));
 },
 
+ getAllPopulated(req, res) {
+    Season.find({}, {__v: 0})
+    .populate('operator')
+    .populate('world')
+    .then(seasons => {
+        //console.log(seasons[0].operator.name)
+        res.status(200).send(seasons);
+        console.log('>>seasons returned');
+    });
+},
+
         delete (req, res) {
             Season.findOne({ name: req.headers.name })
                 .then(season => {

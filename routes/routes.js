@@ -39,6 +39,8 @@ module.exports = (app) => {
     app.delete('/api/seasons/', AuthController.verifyToken, SeasonController.delete);
     //show list of Seasons
     app.get('/api/seasons/' , SeasonController.list);
+    //get all seasons Populated
+    app.get('/api/seasons/populate', SeasonController.getAllPopulated);
 
     //create a new operator
     app.post('/api/operators/', AuthController.verifyToken, OperatorController.create);
