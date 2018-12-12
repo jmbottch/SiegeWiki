@@ -1,4 +1,6 @@
 const Season = require('../models/season');
+const World = require('../models/world');
+const Operator = require('../models/operator');
 
 module.exports = {
 
@@ -82,7 +84,7 @@ module.exports = {
                 let operatorName = req.body.name;
                 let siegeMapName = req.body.name;
                 let foundOperator = new Operator();
-                let foundMap = new Map();
+                let foundMap = new World();
     
                 Operator.findOne({ name: operatorName })
                     .then(resultOp => {
