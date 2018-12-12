@@ -97,7 +97,7 @@ module.exports = {
                         foundMap = resultMap;
                     })
                     .catch((err) => res.status(401).send({err}));
-                    this.recreate(res, season, foundOperator, foundMap)
+                    recreate(res, season, foundOperator, foundMap)
             }
         });
     },
