@@ -40,17 +40,18 @@ module.exports = {
     },
 
     delete(req, res) {
-        User.findOne({name: req.headers.name })
+        User.findOne( { name: req.body.name } )
         .then(user => {
             if(user === null){
-                res.status(401).send({Error: 'User does not exist.'})
+                res.status(401).send({ Error :'User does not exist.'})
             }
-            if(user.password !== req.headers.password) {
-                res.status(401).send({Error: 'Password does not match.'})
+            var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+            if(!passwordIsValid){
+                res.status(401).send({ Error :'Current password does not match.'})
             }
             else {
                 user.delete()
-                .then(() => res.status(200).send({ Message: 'User has been deleted.'}))
+                .then(() => res.status(200).send({ Message :'User succesfully removed.'}));
             }
         });
     }
