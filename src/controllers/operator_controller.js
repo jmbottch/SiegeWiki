@@ -33,27 +33,47 @@ module.exports = {
         }); 
     },
 
-    edit(req, res) {
+    // edit(req, res) {
 
-        Operator.findOne({name: req.body.name})
-        .then(operator => {
-            if (operator === null) {  
-                res.status(401).send({Error: 'Operator does not exist.'})
-            }
-            else {
-                operator.set({
-                    'name': req.body.newName,
-                    'description': req.body.description,
-                    'side': req.body.side
-                })
-                operator.save()
-                 .then(() => res.status(200).send({Message: "Operator has been edited."}))
-                 .catch((err) => res.status(401).send({err}));
-            }
+    //     Operator.findOne({name: req.body.name})
+    //     .then(operator => {
+    //         if (operator === null) {  
+    //             res.status(401).send({Error: 'Operator does not exist.'})
+    //         }
+    //         else {
+    //             operator.set({
+    //                 'name': req.body.newName,
+    //                 'description': req.body.description,
+    //                 'side': req.body.side
+    //             })
+    //             operator.save()
+    //              .then(() => res.status(200).send({Message: "Operator has been edited."}))
+    //              .catch((err) => res.status(401).send({err}));
+    //         }
             
 
-        })
+    //     })
         
+
+    // }
+    
+    edit(req, res) {
+        Operator.findOne({ name: req.body.name })
+            .then(operator => {
+                if (operator === null) {
+                    res.status(401).send({ Error: 'Operator does not exist.' })
+                } else {
+
+                    operator.set({
+                        'name': req.body.newName,
+                        'description': req.body.description,
+                        'side': req.body.side
+                    })
+                    operator.save()
+                        .then(() => res.status(200).send({ Message: "Operator has been edited." }))
+                        .catch((err) => res.status(401).send({ err }));
+                }
+            });
 
     },
 
