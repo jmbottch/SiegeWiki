@@ -2,26 +2,6 @@ const Season = require('../models/season');
 const World = require('../models/world');
 const Operator = require('../models/operator');
 
-function recreate(res, season, operatorAdd, mapAdd) {
-    console.log(season.name + season)
-    Season.findOne({ name: season.name })
-    .then((foundSeason) => {
-        foundSeason.delete()
-        .then(() => {
-            Season.create({
-                _id: season._id,
-                __v: season.__v,
-                name: season.name,
-                season: season.season,
-                description: season.description,
-                year: season.year,
-                operator: operatorAdd,
-                world: mapAdd
-            }).then(() => { res.status(200).send({Message: "Populated season succesfully"}) })
-            .catch((err) => res.status(401).send({err}));
-        })
-    })
-}
 
 module.exports = {
 
@@ -72,33 +52,18 @@ module.exports = {
 
     },
     
-    populate(req, res) {
-        Season.findOne( { name: req.body.name } )
-        .then(season => {
-            if(season === null){
-                res.status(401).send({ Error :'Season does not exist.'})
-            }
-            else { 
-                let operatorName = req.body.name;
-                let worldName = req.body.name;
-                let foundOperator = new Operator();
-                let foundMap = new World();
-    
-                Operator.findOne({ name: operatorName })
-                    .then(resultOp => {
-                        foundOperator = resultOp;
-                    })
-                    .catch((err) => res.status(401).send({err}));
-    
-                    World.findOne({ name: worldName })
-                    .then(resultMap => {
-                        foundMap = resultMap;
-                    })
-                    .catch((err) => res.status(401).send({err}));
-                    recreate(res, season, foundOperator, foundMap)
-            }
-        });
-    },
+   populate(req, res) {
+    console.log(req.body)
+    Season.findByIdAndUpdate(req.body._id,
+         {
+            operator: req.body.name,
+            world: req.body.name
+        })
+        .then((result) => { 
+            console.log(result);
+            res.status(200).send({Message: "Populated season succesfully"}) })
+        .catch((err) => res.status(401).send({err}));
+},
 
         delete (req, res) {
             Season.findOne({ name: req.headers.name })

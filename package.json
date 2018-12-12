@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "test" : "nodemon --exec \"mocha -R min\""
   },
   "repository": {
     "type": "git",
