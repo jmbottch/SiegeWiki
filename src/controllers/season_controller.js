@@ -66,7 +66,7 @@ module.exports = {
                     year: season.year,
                     season: season.sesaon,
                     operator: operatorAdd,
-                    map: mapAdd
+                    world: mapAdd
                 }).then(() => { res.status(200).send({Message: "Populated season succesfully"}) })
             })
         })
