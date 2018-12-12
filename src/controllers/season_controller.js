@@ -53,7 +53,7 @@ module.exports = {
     },
     
    populate(req, res) {
-    console.log(req.body)
+    console.log(req.body + " hoi")
     Season.findByIdAndUpdate(req.body._id,
          {
             operator: req.body.name,
