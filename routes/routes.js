@@ -7,7 +7,7 @@ const AuthController = require('../src/controllers/auth_controller');
 module.exports = (app) => {
 
      //register a new user with 'name, password'
-     app.post('/api/user/register', AuthController.verifyToken, UserController.create);
+     app.post('/api/user/register', UserController.create);
      //login using a token and 'name, password'
      app.post('/api/user/login', AuthController.login);
 
