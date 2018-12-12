@@ -54,10 +54,10 @@ module.exports = {
     
    populate(req, res) {
     console.log(req.body + " hoi")
-    Season.findByIdAndUpdate(req.body._id,
+    Season.findByIdAndUpdate(req.body.name,
          {
-            operator: req.body.name,
-            world: req.body.name
+            operator: req.body.operatorName,
+            world: req.body.siegeMapName
         })
         .then((result) => { 
             console.log(result);
