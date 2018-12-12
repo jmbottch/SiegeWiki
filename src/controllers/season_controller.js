@@ -52,8 +52,8 @@ module.exports = {
 
 
     recreate(res, season, operatorAdd, mapAdd) {
-        console.log(season._id + season)
-        Season.findOne({ _id: season._id })
+        console.log(season.name + season)
+        Season.findOne({ name: season.name })
         .then((foundSeason) => {
             foundSeason.delete()
             .then(() => {
