@@ -2,6 +2,26 @@ const Season = require('../models/season');
 const World = require('../models/world');
 const Operator = require('../models/operator');
 
+function recreate(res, season, operatorAdd, mapAdd) {
+    console.log(season.name + season)
+    Season.findOne({ name: season.name })
+    .then((foundSeason) => {
+        foundSeason.delete()
+        .then(() => {
+            Season.create({
+                _id: season._id,
+                __v: season.__v,
+                name: season.name,
+                description: season.description,
+                year: season.year,
+                operator: operatorAdd,
+                map: mapAdd
+            }).then(() => { res.status(200).send({Message: "Populated season succesfully"}) })
+            .catch((err) => res.status(401).send({err}));
+        })
+    })
+}
+
 module.exports = {
 
     list(req, res) {
@@ -49,28 +69,6 @@ module.exports = {
                 }
             });
 
-    },
-
-
-
-    recreate(res, season, operatorAdd, mapAdd) {
-        console.log(season.name + season)
-        Season.findOne({ name: season.name })
-        .then((foundSeason) => {
-            foundSeason.delete()
-            .then(() => {
-                Season.create({
-                    _id: season._id,
-                    __v: season.__v,
-                    name: season.name,
-                    description: season.description,
-                    year: season.year,
-                    operator: operatorAdd,
-                    map: mapAdd
-                }).then(() => { res.status(200).send({Message: "Populated season succesfully"}) })
-                .catch((err) => res.status(401).send({err}));
-            })
-        })
     },
     
     populate(req, res) {
