@@ -79,8 +79,8 @@ module.exports = {
                 res.status(401).send({ Error :'Season does not exist.'})
             }
             else { 
-                let operatorName = req.body.operatorName;
-                let worldName = req.body.worldName;
+                let operatorName = req.body.name;
+                let worldName = req.body.name;
                 let foundOperator = new Operator();
                 let foundMap = new Map();
                 
