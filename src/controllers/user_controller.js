@@ -43,10 +43,10 @@ module.exports = {
         User.findOne( { name: req.headers.name } )
         .then(user => {
             if(user === null){
-                res.status(401).send({ Error :'User does not exist.'})
+                res.status(401).send({ Error :'User does not exist. ' + req.headers.name})
             }
-            var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
-            if(!passwordIsValid){
+            var passwordIsValid = bcrypt.compareSync(req.headers.password, user.password);
+            if(!passwordIsValid) {
                 res.status(401).send({ Error :'Current password does not match.'})
             }
             else {
