@@ -72,7 +72,8 @@ module.exports = {
     },
     
      populate(req, res) {
-        Season.findOne( { name: req.body.name } )
+         let seasonName = req.body.name
+        Season.findOne( { name: seasonName } )
         .then(season => {
             if(season === null){
                 res.status(401).send({ Error :'Season does not exist.'})
