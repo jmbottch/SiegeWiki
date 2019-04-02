@@ -46,9 +46,7 @@ module.exports = {
             } 
 
             else{
-                world.set('password', newPassword)
-                world.save()
-                .then(() => res.status(200).send({Message: "World has been changed."}))
+                console.log("it worked yall")
             }
         })
     },
