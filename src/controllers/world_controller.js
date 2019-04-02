@@ -9,6 +9,18 @@ module.exports = {
             });
     },
 
+    single(req, res) {
+        World.findById(req.params.id)
+        .then(world => {
+            if(world === null) {
+                res.status(401).send({Error: 'Map bestaat niet.'})
+            } else {
+                res.status(200).send(world);
+                console.log('>>>>>>Map returned<<<<<')
+            }
+        })
+    },
+
     create(req, res) {
 
         World.create({

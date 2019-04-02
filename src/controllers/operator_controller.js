@@ -10,6 +10,17 @@ module.exports = {
                 res.status(200).send(operators);
             });
     },
+    single(req, res) {
+        Operator.findById(req.params.id)
+        .then(operator => {
+            if(operator === null) {
+                res.status(401).send({Error: 'Operator bestaat niet.'})
+            } else {
+                res.status(200).send(operator);
+                console.log('>>>>>>Operator returned<<<<<')
+            }
+        })
+    },
 
     create(req,res) {
         Operator.create({

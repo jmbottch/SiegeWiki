@@ -8,6 +8,17 @@ module.exports = {
                 res.status(200).send(seasons);
             });
     },
+    single(req, res) {
+        Season.findById(req.params.id)
+        .then(season => {
+            if(season === null) {
+                res.status(401).send({Error: 'Season bestaat niet.'})
+            } else {
+                res.status(200).send(season);
+                console.log('>>>>>>Season returned<<<<<')
+            }
+        })
+    },
 
     create(req, res) {
         Season.create({
