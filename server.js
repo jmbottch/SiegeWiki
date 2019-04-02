@@ -8,7 +8,7 @@ const routes = require('./routes/routes');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 
-app.use(cors())
+app.use(cors());
 
 app.use(bodyParser.json());
 routes (app);
