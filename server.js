@@ -13,7 +13,7 @@ app.use(cors());
 app.use(bodyParser.json());
 routes (app);
 
-app.listen(config.env.webPort, () => {
+app.listen(config.env.webPort, cors(),() => {
     console.log('App is ready for requests on ' + config.env.webPort)
   })
 
