@@ -49,7 +49,7 @@ module.exports = {
             } 
 
             else{
-                console.log("it worked yall")
+                console.log("Gefeliciteerd, je bent nu iets verder op weg.")
             }
         })
     },

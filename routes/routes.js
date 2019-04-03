@@ -15,7 +15,7 @@ module.exports = (app) => {
      //Create a new world
      app.post('/api/world', WorldController.create);
     //edit an existing world
-    app.put('/api/world/', WorldController.edit);
+    app.put('/api/world/:id', WorldController.edit);
     //delete a world
     app.delete('/api/world/', WorldController.delete);
     //show list of worlds
