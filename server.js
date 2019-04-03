@@ -8,9 +8,7 @@ const routes = require('./routes/routes');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 
-app.use(cors({
-  origin: ['localhost:4200','http://siegewikia.herokuapp.com']
-}));
+app.use(cors());
 
 app.use(bodyParser.json());
 routes (app);
