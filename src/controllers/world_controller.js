@@ -64,11 +64,7 @@ module.exports = {
                     description: descriptionToSet,
                     availableInRanked: availableInRankedToSet,
                     season: seasonToSet
-                })
-                .catch(err => {
-                    res.status(401).send({ err })
-                    console.log("het gaat mis bij world.set")
-                })
+                }).then(() => console.log("komt door world.set heen"))
                 world.save()
                 .then(() => {
                     res.status(200).send({Message: "Map succesfully edited."})
