@@ -44,12 +44,31 @@ module.exports = {
         .then(world => {
             if (world === null) {
                 res.status(422).send({ Error :'World does not exist.'})
-                
-                console.log("jammer joh")
+                console.log("Werkt niet")
             } 
 
             else{
                 console.log("Gefeliciteerd, je bent nu iets verder op weg.")
+                let nameToSet = req.body.name;
+                let descriptionToSet = req.body.description;
+                let availableInRankedToSet = req.body.availableInRanked;
+
+                if(req.body.name === '' || req.body.name === null) nameToSet = world.name;
+                if(req.body.description === '' || req.body.description === null) descriptionToSet = world.description;
+                if(req.body.availableInRanked === '' || req.body.availableInRanked === null) availableInRankedToSet = world.availableInRanked;
+
+                world.set({
+                    name: nameToSet,
+                    description: descriptionToSet,
+                    availableInRanked: availableInRankedToSet
+                })
+                world.save()
+                .then(() => {
+                    res.status(200).send({Message: "Map succesfully edited."})
+                    console.log("World edited.")
+                    console.log("Het is je gelukt man, fantastisch.")
+                })
+
             }
         })
     },
