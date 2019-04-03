@@ -64,7 +64,7 @@ module.exports = {
                     description: descriptionToSet,
                     availableInRanked: availableInRankedToSet,
                     season: seasonToSet
-                }).then(() => console.log("komt door world.set heen"))
+                })
                 world.save()
                 .then(() => {
                     res.status(200).send({Message: "Map succesfully edited."})
