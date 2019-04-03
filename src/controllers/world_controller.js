@@ -39,7 +39,7 @@ module.exports = {
     },
 
     edit(req, res) {
-        World.findById(req.params.id)
+        World.findOne({_id: req.body._id})
         .then(world => {
             if (world === null) {
                 res.status(422).send({ Error :'World does not exist.'})
