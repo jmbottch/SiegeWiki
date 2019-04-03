@@ -34,6 +34,8 @@ module.exports = {
             .catch((err) => {
                 if (err.name == 'MongoError' && err.code == 11000) {
                     res.status(401).send({Error:'This name already exists.'})
+                } else {
+                    res.status(401).send({err})
                 }
             })
     },
