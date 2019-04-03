@@ -43,6 +43,7 @@ module.exports = {
         .then(world => {
             if (world === null) {
                 res.status(422).send({ Error :'World does not exist.'})
+                console.log("jammer joh")
             } 
 
             else{
