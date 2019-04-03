@@ -52,15 +52,18 @@ module.exports = {
                 let nameToSet = req.body.name;
                 let descriptionToSet = req.body.description;
                 let availableInRankedToSet = req.body.availableInRanked;
+                let seasonToSet = req.body.season;
 
                 if(req.body.name === '' || req.body.name === null) nameToSet = world.name;
                 if(req.body.description === '' || req.body.description === null) descriptionToSet = world.description;
                 if(req.body.availableInRanked === '' || req.body.availableInRanked === null) availableInRankedToSet = world.availableInRanked;
+                if(req.body.season === '' || req.body.season === null) seasonToSet = req.body.season;
 
                 world.set({
                     name: nameToSet,
                     description: descriptionToSet,
-                    availableInRanked: availableInRankedToSet
+                    availableInRanked: availableInRankedToSet,
+                    season: seasonToSet
                 })
                 world.save()
                 .then(() => {
