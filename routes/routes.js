@@ -34,9 +34,9 @@ module.exports = (app) => {
     //create a new season
     app.post('/api/season/', SeasonController.create);
     //edit an existing season
-    app.put('/api/season/', SeasonController.edit);
+    app.put('/api/season/:id', SeasonController.edit);
     //delete a season
-    app.delete('/api/season/', SeasonController.delete);
+    app.delete('/api/season/:id', SeasonController.delete);
     //show list of Seasons
     app.get('/api/seasons/' , SeasonController.list);
     //show a single season
@@ -45,9 +45,9 @@ module.exports = (app) => {
     //create a new operator
     app.post('/api/operator/', OperatorController.create);
     //edit an existing operator
-    app.put('/api/operator/', OperatorController.edit);
+    app.put('/api/operator/:id', OperatorController.edit);
     //delete an operator
-    app.delete('/api/operator/', OperatorController.delete);
+    app.delete('/api/operator/:id', OperatorController.delete);
     //show list of operators
     app.get('/api/operators/' , OperatorController.list);
     //show a single operator

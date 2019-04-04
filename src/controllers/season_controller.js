@@ -41,7 +41,6 @@ module.exports = {
     },
 
     edit(req, res) {
-        const seasonProps = req.body;
         Season.findOne({_id: req.params.id})
         .then(season => {
             if(season === null) {
@@ -77,7 +76,7 @@ module.exports = {
     },
 
     delete(req, res) {
-        Season.findOne({name: req.body.name})
+        Season.findOne({_id: req.params.id})
         .then(season => {
             if(season === null) {
                 res.status(401).send({Error: 'Season does not exist.'})
