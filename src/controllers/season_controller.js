@@ -42,16 +42,30 @@ module.exports = {
 
     edit(req, res) {
         const seasonProps = req.body;
-        Season.findOne({name: req.body.name})
+        Season.findOne({_id: req.params.id})
         .then(season => {
             if(season === null) {
                 res.status(401).send({Error: 'Season does not exist.'})
+                console.log("werkt niet")
             } else 
             {
+                console.log("Gefeliciteerd, je bent nu ietsje verder")
+                let nameToSet = req.body.name;
+                let descriptionToSet = req.body.description;
+                let yearToSet = req.body.year;
+                let seasonToSet = req.body.season;
+
+                if(req.body.name === '' || req.body.name === null)nameToSet = season.name;
+                if(req.body.description === ''|| req.body.description === null)descriptionToSet = season.description;
+                if(req.body.year === '' || req.body.year === null)yearToSet = season.year;
+                if(req.body.season === '' || req.body.season === null)seasonToSet = season.season;
+
                 season.set({
-                     'name': req.body.newName,
-                     'description': req.body.description,
-                     'year': req.body.year
+                     name: nameToSet,
+                     description: descriptionToSet,
+                     year: yearToSet,
+                     season: seasonToSet
+                     
                      
                 })    
                 season.save()
