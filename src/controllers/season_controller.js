@@ -24,7 +24,8 @@ module.exports = {
         Season.create({
             name: req.body.name,
             description: req.body.description,
-            year: req.body.year
+            year: req.body.year,
+            season: req.body.season
         })
         .then(() => 
             res.status(200).send({Message : "Season has been created."}),
