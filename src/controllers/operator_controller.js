@@ -46,18 +46,26 @@ module.exports = {
 
     edit(req, res) {
 
-        Operator.findOne({_id: req.body._id})
-        .then(season => {
-            if (season === null) {  
+        Operator.findOne({_id: req.params._id})
+        .then(operator => {
+            if (operator === null) {  
                 res.status(401).send({Error: 'Operator does not exist.'})
             }
             else {
-                season.set({
-                    name: req.body.name,
-                    description: req.body.description,
-                    year: req.body.year
+                let nameToSet = req.body.name;
+                let descriptionToSet = req.body.description;
+                let sideToSet = req.body.side;
+
+                if(req.body.name === '' || req.body.name === null)nameToSet = operator.name;
+                if(req.body.description === ''|| req.body.description === null)descriptionToSet = operator.description;
+                if(req.body.side === '' || req.body.side === null)sideToSet = operator.side;
+                
+                operator.set({
+                    name: nameToSet,
+                    description: descriptionToSet,
+                    side: sideToSet
                 })
-                season.save()
+                operator.save()
                  .then(() => res.status(200).send({Message: "Operator has been edited."}))
                  .catch((err) => res.status(401).send({err}));
             }
