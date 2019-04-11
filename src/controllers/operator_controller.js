@@ -46,7 +46,7 @@ module.exports = {
 
     edit(req, res) {
 
-        Operator.findOne({_id: req.params._id})
+        Operator.findOne({_id: req.params.id})
         .then(operator => {
             if (operator === null) {  
                 res.status(401).send({Error: 'Operator does not exist.'})
