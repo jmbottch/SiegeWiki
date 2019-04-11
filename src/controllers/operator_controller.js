@@ -77,13 +77,13 @@ module.exports = {
     },
 
     delete(req, res) {
-        Operator.findById(req.body._id)
+        Operator.findById(req.params.id)
         .then(operator =>{
             if(operator === null){
                 res.status(422).send({ Error :'Operator does not exist.'})
             } else {
                 operator.delete()
-                .then(() => res.status(200).send({ Message :'World has been deleted.'}));
+                .then(() => res.status(200).send({ Message :'Operator has been deleted.'}));
             }
         })
     }
