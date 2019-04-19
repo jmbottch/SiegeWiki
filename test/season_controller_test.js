@@ -162,29 +162,29 @@ describe('the season_controller can', () => {
 
     it('can edit a season with fields left empty', function(done) {
         request(app)
-        .post('/api/season')
+        .post('/api/season') //post a test season
         .send(season)
         .end(function(err,res) {
-            expect(res.statusCode).to.equal(200)
-            expect(res.body.Message).to.equal('Season has been created.')
+            expect(res.statusCode).to.equal(200) //check for statuscode 200
+            expect(res.body.Message).to.equal('Season has been created.') //check for season created message
             Season.findOne({name:'Test Season'})
             .then((foundSeason) => {
                 request(app)
-                .put('/api/season/' + foundSeason._id)
-                .send(emptySeason)
+                .put('/api/season/' + foundSeason._id) //perform put request ont api/season/:id
+                .send(emptySeason) // with empty input values
                 .end(function(err, res) {
-                    expect(res.statusCode).to.equal(200)
-                    expect(res.body.Message).to.equal('Season has been edited.')
+                    expect(res.statusCode).to.equal(200) //check for statuscode 200
+                    expect(res.body.Message).to.equal('Season has been edited.') //check for edited season message
                     Season.findOne({name:'Test Season'})
-                    .then((newFoundSeason) => {
+                    .then((newFoundSeason) => { //DOUBLE CHECK
                         request(app)
-                        .get('/api/season/' + newFoundSeason._id)
+                        .get('/api/season/' + newFoundSeason._id) //get request on /api/season/:id
                         .end(function(err,res) {
-                            expect(res.statusCode).to.equal(200)
-                            expect(res.body.name).to.equal('Test Season')
-                            expect(res.body.description).to.equal('Test Season Description')
-                            expect(res.body.year).to.equal(1)
-                            expect(res.body.season).to.equal(1)
+                            expect(res.statusCode).to.equal(200) //check for statuscode 200
+                            expect(res.body.name).to.equal('Test Season') // check for correct name
+                            expect(res.body.description).to.equal('Test Season Description') // check for correct description
+                            expect(res.body.year).to.equal(1) // check for correct year
+                            expect(res.body.season).to.equal(1) // check for correct season
                             done()
                         })
                     })
