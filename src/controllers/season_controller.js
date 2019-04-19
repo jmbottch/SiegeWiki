@@ -25,7 +25,9 @@ module.exports = {
             name: req.body.name,
             description: req.body.description,
             year: req.body.year,
-            season: req.body.season
+            season: req.body.season,
+            operators: req.body.operators,
+            worlds: req.body.worlds
         })
         .then(() => 
             res.status(200).send({Message : "Season has been created."}),
@@ -34,7 +36,8 @@ module.exports = {
             if (err.name == 'MongoError' && err.code == 11000)    
             {
                     res.status(401).send({ Error: 'This name has already been already taken.'});
-            } else 
+            }
+                else 
             {
                     res.status(401).send({err});
             }
@@ -54,17 +57,23 @@ module.exports = {
                 let descriptionToSet = req.body.description;
                 let yearToSet = req.body.year;
                 let seasonToSet = req.body.season;
+                let worldsToSet = req.body.worlds;
+                let operatorsToSet = req.body.operators;
 
                 if(req.body.name === '' || req.body.name === null)nameToSet = season.name;
                 if(req.body.description === ''|| req.body.description === null)descriptionToSet = season.description;
                 if(req.body.year === '' || req.body.year === null)yearToSet = season.year;
                 if(req.body.season === '' || req.body.season === null)seasonToSet = season.season;
+                if(req.body.worlds === '' || req.body.worlds === null)worldsToSet = season.worlds;
+                if(req.body.operators === '' || req.body.operators === null)operatorsToSet = season.operators;
 
                 season.set({
                      name: nameToSet,
                      description: descriptionToSet,
                      year: yearToSet,
-                     season: seasonToSet
+                     season: seasonToSet,
+                     worlds: worldsToSet,
+                     operators: operatorsToSet
                      
                      
                 })    

@@ -14,10 +14,9 @@ module.exports = {
         Operator.findById(req.params.id)
         .then(operator => {
             if(operator === null) {
-                res.status(401).send({Error: 'Operator bestaat niet.'})
+                res.status(401).send({Error:'Operator does not exist'})
             } else {
                 res.status(200).send(operator);
-                console.log('>>>>>>Operator returned<<<<<')
             }
         })
     },
@@ -29,8 +28,7 @@ module.exports = {
             side: req.body.side
         })
         .then(() =>
-        res.status(200).send({Message: "Operator has been created."}),
-        console.log('<------SEASON HAS BEEN CREATED------>'))
+        res.status(200).send({Message: "Operator has been created."}))
         .catch((err) => 
         {
             if (err.name == 'MongoError' && err.code == 11000) 
