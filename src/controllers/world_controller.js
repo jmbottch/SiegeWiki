@@ -16,7 +16,7 @@ module.exports = {
                 res.status(401).send({Error: 'Map bestaat niet.'})
             } else {
                 res.status(200).send(world);
-                console.log('>>>>>>Map returned<<<<<')
+               
             }
         })
     },
@@ -41,16 +41,16 @@ module.exports = {
     },
 
     edit(req, res) {
-        console.log(req.params.id)
+       
         World.findOne({_id: req.params.id})
         .then(world => {
             if (world === null) {
                 res.status(422).send({ Error :'World does not exist.'})
-                console.log("Werkt niet")
+             
             } 
 
             else{
-                console.log("Gefeliciteerd, je bent nu iets verder op weg.")
+               
                 let nameToSet = req.body.name;
                 let descriptionToSet = req.body.description;
                 let availableInRankedToSet = req.body.availableInRanked;
@@ -70,12 +70,11 @@ module.exports = {
                 world.save()
                 .then(() => {
                     res.status(200).send({Message: "Map succesfully edited."})
-                    console.log("World edited.")
-                    console.log("Het is je gelukt man, fantastisch.")
+                    
                 })
                 .catch(err => {
                     res.status(401).send({ err })
-                    console.log("het gaat mis bij world.save")
+                 
                 })
 
             }

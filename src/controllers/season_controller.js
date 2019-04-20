@@ -15,7 +15,6 @@ module.exports = {
                 res.status(401).send({Error: 'Season bestaat niet.'})
             } else {
                 res.status(200).send(season);
-                console.log('>>>>>>Season returned<<<<<')
             }
         })
     },
@@ -30,8 +29,7 @@ module.exports = {
             worlds: req.body.worlds
         })
         .then(() => 
-            res.status(200).send({Message : "Season has been created."}),
-            console.log('<------SEASON HAS BEEN CREATED------>'))
+            res.status(200).send({Message : "Season has been created."}))
             .catch((err) => {
             if (err.name == 'MongoError' && err.code == 11000)    
             {
@@ -49,10 +47,10 @@ module.exports = {
         .then(season => {
             if(season === null) {
                 res.status(401).send({Error: 'Season does not exist.'})
-                console.log("werkt niet")
+               
             } else 
             {
-                console.log("Gefeliciteerd, je bent nu ietsje verder")
+              
                 let nameToSet = req.body.name;
                 let descriptionToSet = req.body.description;
                 let yearToSet = req.body.year;
