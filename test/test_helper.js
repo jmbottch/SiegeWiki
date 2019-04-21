@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 before((done) => {
-    mongoose.connect('mongodb://localhost/siegewiki', { useNewUrlParser: true });
+    mongoose.disconnect(console.log('disconnected from prod db'))
+    mongoose.connect('mongodb://localhost/siegewiki', { useNewUrlParser: true }, console.log('connected to test db'));
 
     mongoose.connection
         .once('open', () => { done(); })
