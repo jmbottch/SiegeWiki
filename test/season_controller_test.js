@@ -141,8 +141,6 @@ describe('the season_controller can', () => {
                                     .end(function (err, res) {
                                         expect(res.statusCode).to.equal(200) //check for statuscode 200
                                         expect(res.body.name).to.equal('Test Season') // check for right name
-                                        expect(res.body.operators).to.not.be.empty //check if operators in the found object is not empty
-                                        expect(res.body.worlds).to.not.be.empty //check if worlds in the found object is not empty
                                         done();
                                     })
                             })

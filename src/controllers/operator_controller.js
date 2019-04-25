@@ -53,11 +53,12 @@ module.exports = {
                 let nameToSet = req.body.name;
                 let descriptionToSet = req.body.description;
                 let sideToSet = req.body.side;
+                let seasonToSet = req.body.season;
 
                 if(req.body.name === '' || req.body.name === null)nameToSet = operator.name;
                 if(req.body.description === ''|| req.body.description === null)descriptionToSet = operator.description;
                 if(req.body.side === '' || req.body.side === null)sideToSet = operator.side;
-                
+                if(req.body.season === '' || req.body.season === null)seasonToSet = operator.season;
                 operator.set({
                     name: nameToSet,
                     description: descriptionToSet,

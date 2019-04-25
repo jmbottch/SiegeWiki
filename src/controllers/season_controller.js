@@ -55,24 +55,26 @@ module.exports = {
                 let descriptionToSet = req.body.description;
                 let yearToSet = req.body.year;
                 let seasonToSet = req.body.season;
-                let worldsToSet = req.body.worlds;
-                let operatorsToSet = req.body.operators;
+                let worldToSet = req.body.world;
+                let operator1ToSet = req.body.operator1;
+                let operator2ToSet = req.body.operator2
 
                 if(req.body.name === '' || req.body.name === null)nameToSet = season.name;
                 if(req.body.description === ''|| req.body.description === null)descriptionToSet = season.description;
                 if(req.body.year === '' || req.body.year === null)yearToSet = season.year;
                 if(req.body.season === '' || req.body.season === null)seasonToSet = season.season;
-                if(req.body.worlds === '' || req.body.worlds === null)worldsToSet = season.worlds;
-                if(req.body.operators === '' || req.body.operators === null)operatorsToSet = season.operators;
+                if(req.body.worlds === '' || req.body.worlds === null)worldToSet = season.world;
+                if(req.body.operator1 === '' || req.body.operator1 === null)operator1ToSet = season.operator1;
+                if(req.body.operator2 === '' || req.body.operator2 === null)operator2ToSet = season.operator2;
 
                 season.set({
                      name: nameToSet,
                      description: descriptionToSet,
                      year: yearToSet,
                      season: seasonToSet,
-                     worlds: worldsToSet,
-                     operators: operatorsToSet
-                     
+                     world: worldToSet,
+                     operator1: operator1ToSet,
+                     operator2: operator2ToSet                    
                      
                 })    
                 season.save()

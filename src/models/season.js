@@ -22,14 +22,18 @@ const SeasonSchema = new Schema({
         type: Number,
         required: [true, 'Season is required']
     },
-    operators: [{
+    operator1: {
         type: Schema.Types.ObjectId,
         ref: 'operator'
-    }],
-    worlds: [{
+    },
+    operator2: {
+        type:Schema.Types.ObjectId,
+        ref:'operator'
+    },
+    world: {
         type: Schema.Types.ObjectId,
         ref: 'world'
-    }]
+    }
 
     
 });
