@@ -25,7 +25,8 @@ module.exports = {
         Operator.create({
             name: req.body.name,
             description: req.body.description,
-            side: req.body.side
+            side: req.body.side,
+            season: req.body.season
         })
         .then(() =>
         res.status(200).send({Message: "Operator has been created."}))
@@ -62,7 +63,8 @@ module.exports = {
                 operator.set({
                     name: nameToSet,
                     description: descriptionToSet,
-                    side: sideToSet
+                    side: sideToSet,
+                    season: seasonToSet
                 })
                 operator.save()
                  .then(() => res.status(200).send({Message: "Operator has been edited."}))
